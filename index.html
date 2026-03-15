@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Référence complète des flags et variables d'environnement Linux Gaming — Proton, DXVK, NVIDIA, Gamescope, Wayland, MangoHud, GameMode, Mesa.">
+  <meta name="theme-color" content="#080c12">
+  <meta property="og:title" content="Linux Gaming Flags — Reference">
+  <meta property="og:description" content="All environment variables and flags for Linux gaming in one place.">
+  <title>Linux Gaming Flags — Reference</title>
+
+  <!-- Favicon inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2300d4f5'/><text y='22' x='4' font-size='20'>⚡</text></svg>">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Highlight mark style -->
+  <style>
+    mark {
+      background: rgba(0,212,245,0.25);
+      color: #00d4f5;
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background layers -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+<div class="bg-radial" aria-hidden="true"></div>
+
+<div id="app">
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container">
+      <a href="#" class="nav-brand" aria-label="Accueil">
+        <div class="nav-logo" aria-hidden="true">⚡</div>
+        <div>
+          <div class="nav-brand-name" data-i18n="nav_brand">Linux Gaming Flags</div>
+          <div class="nav-brand-sub" data-i18n="nav_brand_sub">Reference</div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <div class="nav-badge" aria-label="Version">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="nav_badge">v2.0 · Référence</span>
+        </div>
+
+        <!-- Language Switch -->
+        <div class="lang-switch" role="group" aria-label="Choisir la langue">
+          <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-eyebrow anim-hero-badge">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+          <span data-i18n="hero_eyebrow">Documentation complète</span>
+        </div>
+
+        <h1 class="display-xl anim-hero-title">
+          <span data-i18n="hero_title_1">Flags &</span>
+          <br>
+          <span class="grad-text" data-i18n="hero_title_2">Variables</span>
+          <br>
+          <span data-i18n="hero_title_3">Linux Gaming</span>
+        </h1>
+
+        <p class="hero-desc anim-hero-desc" data-i18n="hero_desc">
+          Référence exhaustive des variables d'environnement et flags pour Steam, Proton, Wine,
+          Vulkan, DXVK, Gamescope, Wayland, NVIDIA, MangoHud et GameMode.
+        </p>
+
+        <div class="hero-tags anim-hero-tags" id="hero-tags" role="list" aria-label="Technologies couvertes"></div>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <!-- ═══ STATS ═══ -->
+      <div class="stats-bar anim-stats" role="region" aria-label="Statistiques">
+        <div class="stat-cell">
+          <div class="stat-number" id="stat-total">—</div>
+          <div class="stat-label" data-i18n="stat_total">Total flags</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" id="stat-cats">—</div>
+          <div class="stat-label" data-i18n="stat_cats">Catégories</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" id="stat-visible">—</div>
+          <div class="stat-label" data-i18n="stat_visible">Affichés</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number grad-text-warm" id="stat-new">—</div>
+          <div class="stat-label" data-i18n="stat_new">Nouveaux</div>
+        </div>
+      </div>
+
+      <!-- ═══ SEARCH + FILTERS ═══ -->
+      <div class="search-section" role="search">
+        <div class="search-row">
+          <div class="search-wrap">
+            <span class="search-icon" aria-hidden="true">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              class="search-input"
+              placeholder="Rechercher une variable, un flag, une description…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Rechercher"
+            >
+            <button class="search-clear" id="search-clear" aria-label="Effacer la recherche">
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter pills -->
+        <div class="filter-pills" id="filter-pills" role="group" aria-label="Filtrer par catégorie"></div>
+      </div>
+
+      <!-- ═══ SECTIONS ═══ -->
+      <div class="sections-grid" id="sections-grid" role="main"></div>
+
+      <!-- No results -->
+      <div class="no-results" id="no-results" role="status" aria-live="polite">
+        <span class="no-results-icon" aria-hidden="true">🔍</span>
+        <div class="no-results-title" data-i18n="noresult_title">Aucun résultat</div>
+        <div class="no-results-sub" data-i18n="noresult_sub">Essayez un autre terme de recherche.</div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-brand">
+        <div class="footer-logo" aria-hidden="true">⚡</div>
+        <span class="footer-name" data-i18n="footer_copy">© 2025 Linux Gaming Flags</span>
+      </div>
+
+      <nav class="footer-links" aria-label="Liens utiles">
+        <a href="https://github.com/ValveSoftware/Proton" class="footer-link" target="_blank" rel="noopener" data-i18n="footer_link1">GitHub</a>
+        <a href="https://wiki.archlinux.org/title/Gaming" class="footer-link" target="_blank" rel="noopener" data-i18n="footer_link2">Arch Wiki</a>
+        <a href="https://www.protondb.com" class="footer-link" target="_blank" rel="noopener" data-i18n="footer_link3">ProtonDB</a>
+      </nav>
+
+      <div class="footer-right">
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">
+          Proton · DXVK · Mesa · Gamescope · MangoHud
+        </span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /#app -->
+
+<!-- Back to top -->
+<button class="back-top" id="back-top" aria-label="Retour en haut">
+  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="alert" aria-live="assertive">
+  <span class="toast-icon">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </span>
+  <span id="toast-msg">Copié dans le presse-papiers</span>
+</div>
+
+<!-- JS — order matters -->
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/search.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

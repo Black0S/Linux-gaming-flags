@@ -1,0 +1,133 @@
+/* ═══════════════════════════════════════════════════════
+   LINUX GAMING FLAGS — animations.css
+   Keyframes · Entry animations · Transitions
+═══════════════════════════════════════════════════════ */
+
+/* ─── Keyframes ─── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(0,212,245,0.3); }
+  70%  { box-shadow: 0 0 0 10px rgba(0,212,245,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,212,245,0); }
+}
+
+/* ─── Entrance Animations ─── */
+.anim-hero-badge {
+  animation: fadeDown 0.55s ease both;
+}
+
+.anim-hero-title {
+  animation: fadeDown 0.6s ease 0.08s both;
+}
+
+.anim-hero-desc {
+  animation: fadeDown 0.6s ease 0.16s both;
+}
+
+.anim-hero-tags {
+  animation: fadeDown 0.6s ease 0.24s both;
+}
+
+.anim-stats {
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+
+/* Staggered section reveals */
+.flag-section {
+  animation: fadeUp 0.5s ease both;
+}
+
+.flag-section:nth-child(1)  { animation-delay: 0.05s; }
+.flag-section:nth-child(2)  { animation-delay: 0.1s; }
+.flag-section:nth-child(3)  { animation-delay: 0.15s; }
+.flag-section:nth-child(4)  { animation-delay: 0.2s; }
+.flag-section:nth-child(5)  { animation-delay: 0.25s; }
+.flag-section:nth-child(6)  { animation-delay: 0.3s; }
+.flag-section:nth-child(7)  { animation-delay: 0.35s; }
+.flag-section:nth-child(8)  { animation-delay: 0.4s; }
+.flag-section:nth-child(9)  { animation-delay: 0.45s; }
+.flag-section:nth-child(10) { animation-delay: 0.5s; }
+
+/* ─── Row highlight on match ─── */
+tr.search-match td {
+  animation: highlightRow 0.4s ease;
+}
+
+@keyframes highlightRow {
+  from { background: rgba(0,212,245,0.08); }
+  to   { background: transparent; }
+}
+
+/* ─── Copy btn feedback ─── */
+.copy-btn.copied svg {
+  animation: scaleIn 0.25s var(--t-spring);
+}
+
+/* ─── Skeleton loading (optional) ─── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    var(--bg-elevated) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: var(--r-sm);
+}
+
+/* ─── Page transition ─── */
+#app {
+  animation: fadeIn 0.35s ease;
+}
+
+/* ─── Smooth collapse ─── */
+.section-body {
+  transition: opacity 0.2s ease;
+}
+
+.flag-section.collapsed .section-body {
+  opacity: 0;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
