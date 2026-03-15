@@ -2,205 +2,191 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Référence complète des flags et variables d'environnement Linux Gaming — Proton, DXVK, NVIDIA, Gamescope, Wayland, MangoHud, GameMode, Mesa.">
-  <meta name="theme-color" content="#080c12">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Référence exhaustive des flags et variables Linux Gaming — Proton, DXVK, VKD3D, NVIDIA, Gamescope, Wayland, MangoHud, GameMode, FSR, DLSS, vkBasalt, PRIME, Mesa.">
+  <meta name="theme-color" content="#070809">
   <meta property="og:title" content="Linux Gaming Flags — Reference">
-  <meta property="og:description" content="All environment variables and flags for Linux gaming in one place.">
+  <meta property="og:description" content="The ultimate centralized reference for Linux Gaming environment variables.">
   <title>Linux Gaming Flags — Reference</title>
-
-  <!-- Favicon inline SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2300d4f5'/><text y='22' x='4' font-size='20'>⚡</text></svg>">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%23f5a623'/><text y='23' x='5' font-size='20' font-family='monospace' fill='%23070809'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
-
-  <!-- Highlight mark style -->
-  <style>
-    mark {
-      background: rgba(0,212,245,0.25);
-      color: #00d4f5;
-      border-radius: 2px;
-      padding: 0 1px;
-    }
-  </style>
 </head>
 <body>
 
-<!-- Background layers -->
-<div class="bg-grid" aria-hidden="true"></div>
-<div class="bg-noise" aria-hidden="true"></div>
-<div class="bg-radial" aria-hidden="true"></div>
+<!-- ══ TOPBAR ══ -->
+<header id="topbar">
+  <div class="topbar-inner">
 
-<div id="app">
+    <!-- Logo -->
+    <div class="logo">
+      <div class="logo-mark">
+        <span class="logo-glyph">LG</span>
+      </div>
+      <div class="logo-text">
+        <span class="logo-primary">Linux Gaming</span>
+        <span class="logo-sub">Flags Reference</span>
+      </div>
+    </div>
 
-  <!-- ═══ NAVBAR ═══ -->
-  <nav class="navbar" role="navigation" aria-label="Navigation principale">
-    <div class="container">
-      <a href="#" class="nav-brand" aria-label="Accueil">
-        <div class="nav-logo" aria-hidden="true">⚡</div>
-        <div>
-          <div class="nav-brand-name" data-i18n="nav_brand">Linux Gaming Flags</div>
-          <div class="nav-brand-sub" data-i18n="nav_brand_sub">Reference</div>
+    <!-- Search (desktop) -->
+    <div class="topbar-search">
+      <div class="tsearch-wrap">
+        <span class="tsearch-ico">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </span>
+        <input id="topbar-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Rechercher…">
+        <button id="topbar-search-clear" class="msearch-clear" style="right:10px" aria-label="Clear">
+          <svg width="8" height="8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="topbar-right">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span id="nav-status">v3.0 · LIVE</span>
+      </div>
+      <div class="lang-sw">
+        <button class="lbtn" data-l="fr">FR</button>
+        <button class="lbtn" data-l="en">EN</button>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ══ PAGE ══ -->
+<div id="page">
+
+  <!-- SIDEBAR (desktop) -->
+  <aside id="sidebar">
+    <div class="sidebar-sticky">
+      <div class="sidebar-label" id="sb-label">Catégories</div>
+      <nav class="sidebar-nav" id="sb-nav"></nav>
+      <div class="sidebar-stats">
+        <div class="sstat">
+          <span class="sstat-label">FLAGS</span>
+          <span class="sstat-val" id="sb-total">—</span>
         </div>
-      </a>
-
-      <div class="nav-actions">
-        <div class="nav-badge" aria-label="Version">
-          <span class="dot" aria-hidden="true"></span>
-          <span data-i18n="nav_badge">v2.0 · Référence</span>
-        </div>
-
-        <!-- Language Switch -->
-        <div class="lang-switch" role="group" aria-label="Choisir la langue">
-          <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
-          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <div class="sstat">
+          <span class="sstat-label">CATS</span>
+          <span class="sstat-val" id="sb-cats">—</span>
         </div>
       </div>
     </div>
-  </nav>
+  </aside>
 
-  <main>
+  <!-- CONTENT -->
+  <main id="content">
 
-    <!-- ═══ HERO ═══ -->
-    <section class="hero" aria-label="Introduction">
-      <div class="container">
-        <div class="hero-eyebrow anim-hero-badge">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
-          </svg>
-          <span data-i18n="hero_eyebrow">Documentation complète</span>
-        </div>
-
-        <h1 class="display-xl anim-hero-title">
-          <span data-i18n="hero_title_1">Flags &</span>
-          <br>
-          <span class="grad-text" data-i18n="hero_title_2">Variables</span>
-          <br>
-          <span data-i18n="hero_title_3">Linux Gaming</span>
-        </h1>
-
-        <p class="hero-desc anim-hero-desc" data-i18n="hero_desc">
-          Référence exhaustive des variables d'environnement et flags pour Steam, Proton, Wine,
-          Vulkan, DXVK, Gamescope, Wayland, NVIDIA, MangoHud et GameMode.
-        </p>
-
-        <div class="hero-tags anim-hero-tags" id="hero-tags" role="list" aria-label="Technologies couvertes"></div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span id="hero-eye">Référence complète</span>
+        <span class="hero-eyebrow-line"></span>
       </div>
+      <h1 class="hero-title">
+        <span class="hero-title-main" id="hero-l1">Linux</span>
+        <span class="hero-title-accent" id="hero-l2">Gaming</span>
+        <span class="hero-title-sub" id="hero-l3">FLAGS</span>
+      </h1>
+      <p class="hero-desc" id="hero-desc">
+        Référence exhaustive des variables d'environnement et flags pour Steam, Proton, Wine,
+        DXVK, VKD3D, Vulkan, Gamescope, Wayland, NVIDIA, MangoHud, GameMode, FSR, DLSS,
+        vkBasalt, PRIME et Mesa.
+      </p>
+      <div class="hero-chips" id="hero-chips"></div>
     </section>
 
-    <div class="container">
-
-      <!-- ═══ STATS ═══ -->
-      <div class="stats-bar anim-stats" role="region" aria-label="Statistiques">
-        <div class="stat-cell">
-          <div class="stat-number" id="stat-total">—</div>
-          <div class="stat-label" data-i18n="stat_total">Total flags</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-number" id="stat-cats">—</div>
-          <div class="stat-label" data-i18n="stat_cats">Catégories</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-number" id="stat-visible">—</div>
-          <div class="stat-label" data-i18n="stat_visible">Affichés</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-number grad-text-warm" id="stat-new">—</div>
-          <div class="stat-label" data-i18n="stat_new">Nouveaux</div>
-        </div>
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="sstrip-cell">
+        <div class="sstrip-n" id="stat-total">—</div>
+        <div class="sstrip-l" id="stat-total-l">Total</div>
       </div>
-
-      <!-- ═══ SEARCH + FILTERS ═══ -->
-      <div class="search-section" role="search">
-        <div class="search-row">
-          <div class="search-wrap">
-            <span class="search-icon" aria-hidden="true">
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-              </svg>
-            </span>
-            <input
-              type="search"
-              id="search-input"
-              class="search-input"
-              placeholder="Rechercher une variable, un flag, une description…"
-              autocomplete="off"
-              spellcheck="false"
-              aria-label="Rechercher"
-            >
-            <button class="search-clear" id="search-clear" aria-label="Effacer la recherche">
-              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Filter pills -->
-        <div class="filter-pills" id="filter-pills" role="group" aria-label="Filtrer par catégorie"></div>
+      <div class="sstrip-cell">
+        <div class="sstrip-n" id="stat-cats">—</div>
+        <div class="sstrip-l" id="stat-cats-l">Catégories</div>
       </div>
-
-      <!-- ═══ SECTIONS ═══ -->
-      <div class="sections-grid" id="sections-grid" role="main"></div>
-
-      <!-- No results -->
-      <div class="no-results" id="no-results" role="status" aria-live="polite">
-        <span class="no-results-icon" aria-hidden="true">🔍</span>
-        <div class="no-results-title" data-i18n="noresult_title">Aucun résultat</div>
-        <div class="no-results-sub" data-i18n="noresult_sub">Essayez un autre terme de recherche.</div>
+      <div class="sstrip-cell">
+        <div class="sstrip-n" id="stat-vis">—</div>
+        <div class="sstrip-l" id="stat-vis-l">Affichés</div>
       </div>
-
+      <div class="sstrip-cell">
+        <div class="sstrip-n" id="stat-new" style="color:var(--rust)">—</div>
+        <div class="sstrip-l" id="stat-new-l">Nouveaux</div>
+      </div>
     </div>
-  </main>
 
-  <!-- ═══ FOOTER ═══ -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-brand">
-        <div class="footer-logo" aria-hidden="true">⚡</div>
-        <span class="footer-name" data-i18n="footer_copy">© 2025 Linux Gaming Flags</span>
-      </div>
-
-      <nav class="footer-links" aria-label="Liens utiles">
-        <a href="https://github.com/ValveSoftware/Proton" class="footer-link" target="_blank" rel="noopener" data-i18n="footer_link1">GitHub</a>
-        <a href="https://wiki.archlinux.org/title/Gaming" class="footer-link" target="_blank" rel="noopener" data-i18n="footer_link2">Arch Wiki</a>
-        <a href="https://www.protondb.com" class="footer-link" target="_blank" rel="noopener" data-i18n="footer_link3">ProtonDB</a>
-      </nav>
-
-      <div class="footer-right">
-        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">
-          Proton · DXVK · Mesa · Gamescope · MangoHud
+    <!-- MOBILE SEARCH -->
+    <div class="mobile-search">
+      <div class="msearch-wrap">
+        <span class="msearch-ico">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
         </span>
+        <input id="mobile-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Rechercher…">
+        <button id="mobile-search-clear" class="msearch-clear" aria-label="Clear">
+          <svg width="8" height="8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
     </div>
-  </footer>
 
-</div><!-- /#app -->
+    <!-- MOBILE FILTER PILLS -->
+    <div class="mobile-pills" id="mpills"></div>
+
+    <!-- SECTIONS -->
+    <div class="sections-list" id="sections"></div>
+
+    <!-- NO RESULTS -->
+    <div class="no-res" id="no-res">
+      <div class="no-res-ico">◈</div>
+      <div class="no-res-title" id="nores-t">Aucun résultat</div>
+      <div class="no-res-sub" id="nores-s">Essayez un autre terme de recherche.</div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <span class="footer-copy" id="footer-copy">
+      © 2026 Linux Gaming Flags — <span>par Black0S</span>
+    </span>
+  </div>
+</footer>
 
 <!-- Back to top -->
-<button class="back-top" id="back-top" aria-label="Retour en haut">
-  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+<button id="back-top" aria-label="Back to top">
+  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
     <polyline points="18 15 12 9 6 15"/>
   </svg>
 </button>
 
 <!-- Toast -->
-<div class="toast" id="toast" role="alert" aria-live="assertive">
-  <span class="toast-icon">
-    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-  </span>
-  <span id="toast-msg">Copié dans le presse-papiers</span>
+<div id="toast" role="alert" aria-live="assertive">
+  <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+  <span id="toast-msg">Copié !</span>
 </div>
 
-<!-- JS — order matters -->
+<!-- Scripts -->
+<script src="js/bg.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/data.js"></script>
-<script src="js/search.js"></script>
 <script src="js/app.js"></script>
 
 </body>
