@@ -8,7 +8,7 @@
 
 A dependency-free static site covering every useful flag and variable for gaming on Linux — Proton, DXVK, Vulkan, NVIDIA, Gamescope, Wayland, MangoHud, GameMode, Mesa, Wine and more.
 
-**→ [Live demo](#)**
+**→ [Live demo](https://black0s.github.io/Linux-gaming-flags/)**
 
 ---
 
